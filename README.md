@@ -3,6 +3,30 @@
 - lifemon_interfaces define: msg and srv for this project
 - screensaver_srv: include python nodes
 
+# run
+
+- launch
+
+```
+$ ros2 launch screensaver_srv screensaver.launch.py
+```
+
+- server
+```
+$ ros2 run screensaver_srv service 
+```
+
+- client
+
+```
+$ ros2 run screensaver_srv client
+```
+
+# TODO
+- [ ] how to handle control c in node
+- [ ] config file (e.g., THRESHOLD_NO_FACE = 5)
+- [ ] dockerize
+- [x] add launch
 
 # issue
 
