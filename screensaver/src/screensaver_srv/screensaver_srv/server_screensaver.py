@@ -16,13 +16,17 @@ class ScreenSaverService(Node):
     def activate_screensaver_callback(self, request, response):
         ret = None
         if request.has_face:
-            ret = subprocess.run("xscreensaver-command --activate", shell=True)
+            ret = subprocess.run("xset dpms force on", shell=True)
+            ret = ret.returncode == 0 and subprocess.run("xscreensaver-command --activate", shell=True)
+            self.get_logger().info("screensaver activated")
         else:
-            ret = subprocess.run("xset dpms force off", shell=True)
+            ret = subprocess.run("xscreensaver-command --deactivate", shell=True)
+            ret = ret.returncode ==0 and subprocess.run("xset dpms force off", shell=True)
+            self.get_logger().info("screen off")
         
         self.get_logger().info(f"return code: {ret.returncode}")
 
-        response.ret = request.returncode == 0
+        response.ret = ret.returncode == 0
 
         return response
 

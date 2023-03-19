@@ -5,7 +5,7 @@ import time
 import cv2
 
 FACE_CASCADE_FILE = 'haarcascade_frontalface_default.xml'
-THRESHOLD_NO_FACE = 3
+THRESHOLD_NO_FACE = 5
 
 class FaceDetection:
     """class for face detection from webcam"""
@@ -56,8 +56,8 @@ class FaceDetection:
             if self.cnt_no_face < THRESHOLD_NO_FACE:
                 self.cnt_no_face += 1
 
-        print(self.cnt_no_face)
-        return self.cnt_no_face < THRESHOLD_NO_FACE
+        print(f"count for no face detected: {self.cnt_no_face}")
+        return not (num_faces == 0 and self.cnt_no_face >= THRESHOLD_NO_FACE)
 
 def main():
     facedet = FaceDetection()
