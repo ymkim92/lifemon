@@ -1,0 +1,4 @@
+bool has_face
+---
+# return value
+bool ret
