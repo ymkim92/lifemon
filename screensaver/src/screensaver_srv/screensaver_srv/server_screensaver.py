@@ -36,9 +36,11 @@ def main():
 
     screensaver_service = ScreenSaverService()
 
-    rclpy.spin(screensaver_service)
-
-    rclpy.shutdown()
+    try:
+        rclpy.spin(screensaver_service)
+        rclpy.shutdown()
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == '__main__':

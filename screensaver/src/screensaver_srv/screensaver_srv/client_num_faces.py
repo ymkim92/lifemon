@@ -30,17 +30,20 @@ def main():
     rclpy.init()
     screensaver_client = ScreenSaverClientAsync()
     face_det = FaceDetection()
-    while True:
-        has_face = face_det.get_face_detected(show_image=False)
-        if prev_has_face != has_face:
-            prev_has_face = has_face
-            response = screensaver_client.send_request(has_face)
-            screensaver_client.get_logger().info(
-                f'Result of activate_screensaver: {response.ret}'
-            )
+    try:
+        while True:
+            has_face = face_det.get_face_detected(show_image=False)
+            if prev_has_face != has_face:
+                prev_has_face = has_face
+                response = screensaver_client.send_request(has_face)
+                screensaver_client.get_logger().info(
+                    f'Result of activate_screensaver: {response.ret}'
+                )
+    except KeyboardInterrupt:
+        pass
 
     screensaver_client.destroy_node()
-    rclpy.shutdown()
+    # rclpy.shutdown()
 
 
 if __name__ == '__main__':
