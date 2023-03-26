@@ -5,11 +5,10 @@ import time
 import cv2
 
 FACE_CASCADE_FILE = 'haarcascade_frontalface_default.xml'
-THRESHOLD_NO_FACE = 5
 
 class FaceDetection:
     """class for face detection from webcam"""
-    def __init__(self):
+    def __init__(self, threshold_no_face):
         # Load the cascade
         self.face_cascade = cv2.CascadeClassifier(
             cv2.data.haarcascades + FACE_CASCADE_FILE
@@ -18,6 +17,7 @@ class FaceDetection:
 
         self.num_faces = 0
         self.cnt_no_face = 0
+        self.threshold_no_face = threshold_no_face
     
     def get_number_of_faces(self, show_image=False):
         # To capture video from webcam. 
@@ -53,11 +53,11 @@ class FaceDetection:
         if num_faces > 0:
             self.cnt_no_face = 0
         else:
-            if self.cnt_no_face < THRESHOLD_NO_FACE:
+            if self.cnt_no_face < self.threshold_no_face:
                 self.cnt_no_face += 1
 
         print(f"count for no face detected: {self.cnt_no_face}")
-        return not (num_faces == 0 and self.cnt_no_face >= THRESHOLD_NO_FACE)
+        return not (num_faces == 0 and self.cnt_no_face >= self.threshold_no_face)
 
 def main():
     facedet = FaceDetection()

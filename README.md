@@ -25,6 +25,18 @@ $ ros2 run screensaver_srv client
 # TODO
 - [ ] how to handle control c in node
 - [ ] config file (e.g., THRESHOLD_NO_FACE = 5)
+
+  https://roboticsbackend.com/rclpy-params-tutorial-get-set-ros2-params-with-python/
+  https://roboticsbackend.com/ros2-yaml-params/
+- [ ] 
+```
+ykim@msi:~/devel/lifemon/screensaver$ ros2 param list
+Exception while calling service of node '/screensaver_client_async': None
+/screensaver_service:
+  use_sim_time
+ykim@msi:~/devel/lifemon/screensaver$ 
+```
+
 - [ ] dockerize
 - [x] add launch
 
