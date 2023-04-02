@@ -23,22 +23,18 @@ $ ros2 run screensaver_srv client
 ```
 
 # TODO
-- [ ] how to handle control c in node
-- [ ] config file (e.g., THRESHOLD_NO_FACE = 5)
-
-  https://roboticsbackend.com/rclpy-params-tutorial-get-set-ros2-params-with-python/
-  https://roboticsbackend.com/ros2-yaml-params/
-- [ ] 
-```
-ykim@msi:~/devel/lifemon/screensaver$ ros2 param list
-Exception while calling service of node '/screensaver_client_async': None
-/screensaver_service:
-  use_sim_time
-ykim@msi:~/devel/lifemon/screensaver$ 
-```
 
 - [ ] dockerize
+- [ ] test coverage
+- [ ] ci
 - [x] add launch
+- [X] how to handle control c in node
+- [X] config file (e.g., THRESHOLD_NO_FACE = 5)
+
+# parameters
+- https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html
+- https://roboticsbackend.com/rclpy-params-tutorial-get-set-ros2-params-with-python/
+- https://roboticsbackend.com/ros2-yaml-params/
 
 # issue
 
@@ -57,4 +53,18 @@ error: package directory 'haarcascade_frontalface_default/xml' does not exist
 - solution:
 ```
 pip install opencv-contrib-python --upgrade 
+```
+
+## 3. Exception while calling service of node
+```
+ykim@msi:~/devel/lifemon/screensaver$ ros2 param list
+Exception while calling service of node '/screensaver_client_async': None
+/screensaver_service:
+  use_sim_time
+```
+- solution:
+```
+Don't forget this:
+
+. install/setup.bash
 ```
