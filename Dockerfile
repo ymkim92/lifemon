@@ -13,11 +13,11 @@ RUN \
 
 WORKDIR /root  
 
-RUN \
-  wget https://github.com/ymkim92/lifemon/archive/refs/heads/main.zip && \
-  unzip main.zip && \
-  cd lifemon-main && \
-  bash -c ". /opt/ros/humble/setup.bash && \
-  colcon build && \
-  . install/setup.bash && \
-  ros2 launch screensaver_srv screensaver.launch.py"
+# RUN \
+#   wget https://github.com/ymkim92/lifemon/archive/refs/heads/main.zip && \
+#   unzip main.zip && \
+#   cd lifemon-main && \
+#   bash -c ". /opt/ros/humble/setup.bash && \
+#   colcon build && \
+#   . install/setup.bash && \
+#   ros2 launch screensaver_srv screensaver.launch.py"

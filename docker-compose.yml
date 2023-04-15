@@ -1,0 +1,21 @@
+version: "3"
+services:
+ screensaver:
+   build: ./Dockerfile
+   image: yk-ros2-humble
+   network_mode: "host"
+   environment:
+      - DISPLAY=${DISPLAY}
+   devices:
+      - /dev/video0:/dev/video0
+   command: 
+      - /bin/sh
+      - -c
+      - |
+        wget https://github.com/ymkim92/lifemon/archive/refs/heads/main.zip
+        unzip main.zip
+        cd lifemon-main
+        bash -c ". /opt/ros/humble/setup.bash
+        colcon build
+        . install/setup.bash
+        ros2 launch screensaver_srv screensaver.launch.py"
