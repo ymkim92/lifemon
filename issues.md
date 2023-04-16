@@ -16,8 +16,19 @@ $ ros2 run screensaver_srv client
 $ ros2 launch screensaver_srv screensaver.launch.py
 ```
 
-# TODO
+# configure
 
+$ ros2 param list
+/screensaver_client_async:
+  interval_camera_capture
+  no_face_times
+  use_sim_time
+/screensaver_service:
+  use_sim_time
+
+$ ros2 param set /screensaver_client_async interval_camera_capture 3
+# TODO
+- [ ] run client asynchronously
 - [ ] dockerize: how to run docker as a system service
 - [ ] test coverage
 - [ ] ci
