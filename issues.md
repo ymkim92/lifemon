@@ -27,6 +27,17 @@ $ ros2 param list
   use_sim_time
 
 $ ros2 param set /screensaver_client_async interval_camera_capture 3
+
+# Design
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: Hi Bob
+    Bob->>Alice: Hi Alice
+```
+
 # TODO
 - [ ] run client asynchronously
 - [ ] dockerize: how to run docker as a system service
