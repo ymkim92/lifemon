@@ -32,14 +32,18 @@ $ ros2 param set /screensaver_client_async interval_camera_capture 3
 
 ```mermaid
 sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>Bob: Hi Bob
-    Bob->>Alice: Hi Alice
+    participant server as ScreensaverServer
+    participant pub as CameraPublisher
+    box blue clientNode
+      participant client as ScreensaverClient
+      participant sub as CameraSubscriber
+    end
+    pub->>sub: num of faces
+    client->>server: activate screensaver or turn off the screen
 ```
 
 # TODO
-- [ ] run client asynchronously
+- [ ] run client asynchronously: https://docs.ros.org/en/humble/How-To-Guides/Sync-Vs-Async.html
 - [ ] dockerize: how to run docker as a system service
 - [ ] test coverage
 - [ ] ci
