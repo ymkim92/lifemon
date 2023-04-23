@@ -33,12 +33,11 @@ $ ros2 param set /screensaver_client_async interval_camera_capture 3
 ```mermaid
 sequenceDiagram
     participant server as ScreensaverServer
-    participant pub as CameraPublisher
     box blue clientNode
       participant client as ScreensaverClient
-      participant sub as CameraSubscriber
+      participant face as FaceDetector
     end
-    pub->>sub: num of faces
+    face->>client: num of faces
     client->>server: activate screensaver or turn off the screen
 ```
 
@@ -171,6 +170,21 @@ blocking function in main interrupts the callback of ros2 node
 spin() call should be run with minimum blocking.
 
 ==> part in main should be moved to ros2 node
+
+```
+ykim@msi:~/devel/lifemon$ ros2 param list
+/screensaver_client_async:
+  interval_camera_capture
+  no_face_times
+  use_sim_time
+/screensaver_service:
+  use_sim_time
+ykim@msi:~/devel/lifemon$ ros2 param set /screensaver_client_async no_face_times 2
+Set parameter successful
+ykim@msi:~/devel/lifemon$ ros2 param get /screensaver_client_async no_face_times 
+Integer value is: 5
+
+```
  
 ## python setup tool
 

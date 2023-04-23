@@ -8,7 +8,7 @@ from rclpy.node import Node
 from .facedetcam import FaceDetection
 
 DEFAULT_NO_FACE_TIMES = 3
-DEFAULT_INTERVAL_SEC_CAMERA_CAPTURE = 2
+DEFAULT_INTERVAL_SEC_CAMERA_CAPTURE = 1
 
 class ScreenSaverClientAsync(Node):
     """ros2 node"""
@@ -30,7 +30,7 @@ class ScreenSaverClientAsync(Node):
         self.face_det = FaceDetection(self.no_face_times)
 
         self.timer_param = self.create_timer(1, self.timer_callback_param)
-        self.timer_faces = self.create_timer(2, self.timer_callback_faces)
+        self.timer_faces = self.create_timer(DEFAULT_INTERVAL_SEC_CAMERA_CAPTURE/2, self.timer_callback_faces)
 
         self.cli = self.create_client(ActivateScreenSaver, 'activate_screensaver')
         while not self.cli.wait_for_service(timeout_sec=1.0):
@@ -54,11 +54,11 @@ class ScreenSaverClientAsync(Node):
     def timer_callback_faces(self):
         """ get has_face"""
         curr_time = time.time()
-        if (curr_time - self.prev_time_caputure) > self.interval_camera_capture:
+        if (curr_time - self.prev_time_caputure) >= self.interval_camera_capture:
             self.face_det.threshold_no_face = self.no_face_times
             # TODO move threshold to argument!
             self.has_face = self.face_det.get_face_detected(show_image=False)
-            self.get_logger().info(f"main loop has_face {self.has_face}")
+            # self.get_logger().info(f"main loop has_face {self.has_face}")
             self.prev_time_caputure = curr_time
 
 def main():

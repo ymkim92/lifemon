@@ -29,5 +29,9 @@ docker run --rm -ti --net=host -e DISPLAY=:0 -v .:/root --device="/dev/video0:/d
 docker run --rm -ti --net=host -e DISPLAY=:0 -v .:/root --device="/dev/video0:/dev/video0" yk-ros2-humble
 
 ### compose
+```
+$ docker compose run screensaver
+```
 
-docker compose run screensaver
+
+ros2 launch screensaver_srv screensaver.launch.py && ros2 param set /screensaver_client_async no_face_times 2
