@@ -52,6 +52,8 @@ sequenceDiagram
 - [X] config file (e.g., THRESHOLD_NO_FACE = 5)
 
 
+# ros
+
 
 # docker issue
 
@@ -164,12 +166,11 @@ Exception while calling service of node '/screensaver_client_async': None
 /screensaver_service:
   use_sim_time
 ```
-- solution:
-```
-Don't forget this:
 
-. install/setup.bash
-```
+blocking function in main interrupts the callback of ros2 node
+spin() call should be run with minimum blocking.
+
+==> part in main should be moved to ros2 node
  
 ## python setup tool
 

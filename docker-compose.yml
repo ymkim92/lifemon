@@ -19,3 +19,4 @@ services:
         colcon build
         . install/setup.bash
         ros2 launch screensaver_srv screensaver.launch.py"
+        ros2 param set /screensaver_client_async no_face_times 2

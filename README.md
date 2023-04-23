@@ -27,3 +27,7 @@ You should be able to see the Dockerfile in the ${PWD}.
 docker run --rm -ti --net=host -e DISPLAY=:0 -v .:/root --device="/dev/video0:/dev/video0" ${YOUR_TAG_NAME}
 
 docker run --rm -ti --net=host -e DISPLAY=:0 -v .:/root --device="/dev/video0:/dev/video0" yk-ros2-humble
+
+### compose
+
+docker compose run screensaver
